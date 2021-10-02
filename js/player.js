@@ -1,5 +1,4 @@
-// images for animations
-
+// image files for animations
 const dino_still_image = new Image();
 const dino_run_1_image = new Image();
 const dino_run_2_image = new Image();
@@ -38,14 +37,13 @@ class Player {
     // jump if space is pressed
     const spacePressed = () => {
       if(this.grounded) {
-        this.velocity.y = -0.5;
+        this.velocity.y -= 0.6;
       }
     };
 
     game.keyPressed('Space', spacePressed);
 
     // update game score
-    if(this.curAnimation === 'running' || this.curAnimation === 'jumping');
     game.curScore += game.dt/100;
   }
 

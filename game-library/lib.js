@@ -1,9 +1,10 @@
 // game class
 class Game {
-  constructor(width, height, gameLoopCb) {
-    this.bgColor = '#f2f2f2';
+  constructor(width, height, gameLoopCb, bgColor='#dfe0df') {
+    // background color for the game
+    this.bgColor = bgColor;
 
-    // keep track of current score and high score
+    // keep track of current score
     this.curScore = 0;
     this.highScore = 0;
 
@@ -143,5 +144,8 @@ export const box2dCollision = (sprite1, sprite2) => {
    sprite1.position.y < sprite2.position.y + sprite2.size.height &&
    sprite1.position.y + sprite1.size.height > sprite2.position.y);
 }
+
+export const GAME_WIDTH = window.innerWidth;
+export const GAME_HEIGHT = 300;
 
 export default Game;
