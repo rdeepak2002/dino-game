@@ -39,4 +39,10 @@ const gameLoop = (game) => {
 }
 
 // start an instance of the game class
-new Game(GAME_WIDTH, GAME_HEIGHT, gameLoop).init();
+const bgColor = '#dfe0df';
+let music = '../resources/music.mp3';
+
+// uncomment to mute music:
+// music = undefined;
+
+new Game(GAME_WIDTH, GAME_HEIGHT, gameLoop, bgColor, music).init();

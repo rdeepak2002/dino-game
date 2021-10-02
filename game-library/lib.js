@@ -1,8 +1,11 @@
 // game class
 class Game {
-  constructor(width, height, gameLoopCb, bgColor='#dfe0df') {
+  constructor(width, height, gameLoopCb, bgColor, musicToPlay) {
     // background color for the game
     this.bgColor = bgColor;
+
+    // play music
+    this.musicToPlay = musicToPlay;
 
     // keep track of current score
     this.curScore = 0;
@@ -30,6 +33,9 @@ class Game {
     this.keyListeners = {};
 
     const keyPressListener = (e) => {
+      // play music on first key click
+      this.playMusic();
+
       const fun = this.keyListeners[e.code];
 
       if(fun !== undefined) {
@@ -135,6 +141,14 @@ class Game {
     const fontSize = 30;
     this.ctx.font = `${fontSize}px Arial`;
     this.ctx.fillText(text, x, y + fontSize);
+  }
+
+  playMusic() {
+    if(this.musicToPlay) {
+      const audio = new Audio(this.musicToPlay);
+      audio.play();
+      this.musicToPlay = undefined;
+    }
   }
 }
 
