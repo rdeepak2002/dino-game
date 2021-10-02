@@ -43,6 +43,6 @@ const bgColor = '#dfe0df';
 let music = '../resources/music.mp3';
 
 // uncomment to mute music:
-// music = undefined;
+music = undefined;
 
 new Game(GAME_WIDTH, GAME_HEIGHT, gameLoop, bgColor, music).init();
