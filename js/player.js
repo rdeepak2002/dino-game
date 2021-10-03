@@ -23,7 +23,7 @@ class Player {
       'jumping' : [dino_still_image]
     };
 
-    this.curAnimation = 'running';
+    this.curAnimation = 'standing';
   }
 
   update(game) {
@@ -36,6 +36,16 @@ class Player {
 
     // jump if space is pressed
     const spacePressed = () => {
+      // start the game
+      game.started = true;
+
+      // change background bgColor
+      document.body.style.background = 'black';
+
+      // play music on first key click
+      game.playMusic();
+
+      // set y velocity as upwards to make sprite jump
       if(this.grounded) {
         this.velocity.y -= 0.6;
       }
@@ -44,11 +54,16 @@ class Player {
     game.keyPressed('Space', spacePressed);
 
     // update game score
-    game.curScore += game.dt/100;
+    if(game.started) {
+      game.curScore += game.dt/100;
+    }
   }
 
   draw(game) {
-    if(!this.grounded) {
+    if(!game.started) {
+      this.curAnimation = 'standing';
+    }
+    else if(!this.grounded) {
       this.curAnimation = 'jumping';
     }
     else {

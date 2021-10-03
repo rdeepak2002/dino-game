@@ -1,6 +1,9 @@
 // game class
 class Game {
-  constructor(width, height, gameLoopCb, bgColor, musicToPlay) {
+  constructor(gameLoopCb, bgColor, musicToPlay) {
+    // start game only on first jump
+    this.started = false;
+
     // background color for the game
     this.bgColor = bgColor;
 
@@ -18,8 +21,8 @@ class Game {
     this.gravity = 0.001;
 
     // keep track of width and height of game
-    this.width = width;
-    this.height = height;
+    this.width = GAME_WIDTH;
+    this.height = GAME_HEIGHT;
 
     // register callback function
     this.gameLoopCb = gameLoopCb;
@@ -33,9 +36,6 @@ class Game {
     this.keyListeners = {};
 
     const keyPressListener = (e) => {
-      // play music on first key click
-      this.playMusic();
-
       const fun = this.keyListeners[e.code];
 
       if(fun !== undefined) {

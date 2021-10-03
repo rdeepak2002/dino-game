@@ -9,7 +9,7 @@ const bird_still_image = new Image();
 bird_still_image.src = '../resources/bird_still.png';
 
 class Enemy {
-  constructor(width, height, velocityX = 0, velocityY = 0) {
+  constructor(width, height, velocityX = 0, velocityY = 0, x = undefined) {
     // bounding box of this sprite
     this.size = {width: width, height: height};
     this.velocity = {x: velocityX, y: velocityY};
@@ -17,6 +17,9 @@ class Enemy {
 
     // place enemy randomly
     this.randomizePosition();
+
+    if(x)
+      this.position.x = x;
   }
 
   randomizePosition() {
@@ -34,7 +37,6 @@ class Enemy {
     if(box2dCollision(player, this)) {
       game.highScore = Math.max(game.curScore, game.highScore);
       game.curScore = 0;
-      this.randomizePosition();
     }
 
     if(this.position.x < -1 * this.size.width) {
